@@ -1,0 +1,17 @@
+@import '../ultils/initial.scss';
+
+.layout{
+    height: 100vh;
+    padding: 0;
+    margin:0;
+    .row{
+        height: 100%;
+    }
+    .sideBar{
+       
+        .sideBar_wrapper{
+            height: 100%;
+             
+        }
+    }
+}

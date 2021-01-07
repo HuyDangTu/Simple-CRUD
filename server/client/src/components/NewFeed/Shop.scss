@@ -1,0 +1,127 @@
+@import '../ultils/initial.scss';
+@mixin default{
+    padding: 0;
+    margin:0;
+    box-sizing: border-box;
+}
+
+@mixin linkColor{
+    color:  $primaryColor;
+}
+
+@mixin  text-font {
+    font-family: 'Montserrat', sans-serif;
+}
+// @import '../../ultils/initial.scss';
+
+.account{
+    padding: 10px;
+    h4{
+        color: #969696
+    }
+    .avt{
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+    .button{
+        display: flex;
+        .filter,.sort{
+           
+           button{
+               background: #b3b3b3;
+               border: none;
+               color: white;
+               width: 100px;
+           }
+        }
+        .filter{
+            margin-left: 10px;
+        }
+    }
+    .report-list{
+        width: 100%;
+        margin-top:32px;
+        .name,
+        .role,
+        .userName,
+        .email,
+        .action{
+            width: 25%;
+        }
+       
+        .table-header{
+            th{
+                padding: 10px 10px 10px 10px;
+                border-bottom: 1px solid #dddddd;
+            }
+
+        }
+        .table-content{
+            td{
+                padding: 16px 10px;
+                border-bottom: 1px solid #dddddd;
+            }
+            // padding: 8px 0px;
+        }
+        .table-content:hover{
+            td{
+                background-color: #f2f2f2;
+            }
+          
+        }
+        .action{
+            .action_btn{
+                display: flex;
+                border:solid 0.5px #f2f2f2;
+                padding: 8px;
+                border-radius: 4px;  
+                .edit{
+                   
+                
+                    margin: 0px 12px;
+                }
+                .trash{
+                  
+                    margin: 0px 12px;
+                }
+            }
+          
+        }
+       
+    }
+    .add_btn{
+        border: none;
+        border-radius: 5px;
+        padding: 6px 15px 6px 15px;
+        color: white;
+        background: $primaryColor;   
+        float: right; 
+    }
+}
+.dialog_wrapper{
+    padding:24px;
+ h6{
+     font-family: 'Google Sans', sans-serif;
+ }
+ .no_btn{
+     font-size: 0.8em;
+     font-family: 'Google Sans', sans-serif;
+     color:grey;
+     padding: 5px 30px;
+     border-radius: 3px;
+     margin-right: 8px;
+ }
+ .yes_btn
+ {
+     font-family: 'Google Sans', sans-serif;
+     font-size: 0.8em;
+     background-color: #f2f9ff;
+     border: solid 0.1px #f2f9ff;
+     color: #7166F9;
+     padding: 5px 30px;
+     border-radius: 3px;
+     margin-right: 8px;
+ }
+ }
