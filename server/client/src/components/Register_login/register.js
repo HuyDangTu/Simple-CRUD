@@ -167,8 +167,6 @@ class Register extends Component {
                             ErrorMessage: response.payload.message
                         });
                     }
-                }).catch(e => {
-                    this.setState({ formError: true })
                 })
         }
         else {

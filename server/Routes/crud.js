@@ -54,7 +54,6 @@ router.post('/api/users/delete', jsonParser, (req, res) => {
 //GET USER LIST
 router.get('/api/users', auth, (req, res) => {
 
-    let limit = req.body.limit ? parseInt(req.body.limit) : 6;
     let skip = req.body.skip ? parseInt(req.body.skip) : 0;
 
     User.aggregate([
@@ -73,7 +72,6 @@ router.get('/api/users', auth, (req, res) => {
     },
     { "$sort": { createdAt: -1 } },
     { "$skip": skip },
-    { "$limit": limit }
     ], function (err, accounts) {
             
         if (err) return res.status(400).send(err);

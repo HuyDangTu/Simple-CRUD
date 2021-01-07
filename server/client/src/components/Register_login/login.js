@@ -7,9 +7,12 @@ import {withRouter} from 'react-router-dom';
 import MyButton from '../ultils/button'
 import GoggleLoginButton from '../GoggleLoginButton/GoogleLoginButton'
 import FacebookLoginButton from '../FacebookLoginButton/FacebookLoginButton';
+import { Button, CircularProgress, Snackbar } from '@material-ui/core';
+import MuiAlert from '@material-ui/lab/Alert'
 
 class Login extends Component {
     state = {
+        snackErr:false,
         formError: false,
         formSuccess: '',
         formData: {
@@ -74,6 +77,7 @@ class Login extends Component {
                     this.props.history.push('/Dashboard')
                 }else{
                     this.setState({
+                        snackErr:true,
                         formError: false
                     });
                 }
@@ -81,6 +85,7 @@ class Login extends Component {
         }
         else{
             this.setState({
+                snackErr:true,
                 formError: true
             })
         }
@@ -168,7 +173,19 @@ class Login extends Component {
                     </div>
                 </form>
                 </div>
+                <Snackbar
+                        anchorOrigin={{
+                            vertical: 'bottom',
+                            horizontal: 'center'
+                        }}
+                        open={this.state.snackErr}
+                        onClose={() => this.setState({ snackErr: false })}
+                        autoHideDuration={2000}
+                    >
+                        <MuiAlert elevation={6} variant="filled" severity={'error'} >Tên tài khoản hoặc mật khẩu không chính xác</MuiAlert>
+                    </Snackbar>
             </div>
+            
         );
     }
 }

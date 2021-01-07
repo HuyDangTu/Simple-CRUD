@@ -34,7 +34,7 @@ class Newfeed extends Component {
     };
 
     handleAccept = () => {
-    this.setState({setOpen:false,setSnack:true});
+  
     this.props.dispatch(disableuser(this.state.setUser)).then(data=>{ this.props.dispatch(all()); this.setState({setOpen:false,setSnack:true});});
     };
     handleDiscline = ()=>{
