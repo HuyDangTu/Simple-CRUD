@@ -56,7 +56,6 @@ class GoogleLoginButton extends Component {
         : template = (
             <FacebookLogin
                 appId="1075917512835265"
-                autoLoad={true}
                 fields="name,email,picture"
                 callback={this.responseFacebook}
                 render={renderProps => (

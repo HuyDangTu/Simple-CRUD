@@ -117,7 +117,6 @@ class Newfeed extends Component {
                     onClose={() => this.setState({ setSnack: false })}
                     autoHideDuration={2000}
                 // message=
-
                 >
                     <MuiAlert elevation={6} variant="filled" severity={'warning'} >Đã xóa user</MuiAlert>
                 </Snackbar>

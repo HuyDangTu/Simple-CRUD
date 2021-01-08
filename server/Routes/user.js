@@ -35,29 +35,40 @@ router.get('/api/users/auth',auth,(req, res) => {
 
 //REGISTER 
 router.post('/api/users/register', auth, jsonParser, (req, res) => {
+    console.log(req.body);
     let message = "", isValidUserName = false;
     User.findOne({ userName: req.body.userName }, (err, user) => {
         console.log(user)
         if (user) {
             message += "Username đã được sử dụng!";
-            isValidUserName = false;
+            //isValidUserName = false;
+            res.json({ success: false, err: message });
         } else {
-            isValidUserName = true;
-        }
-    }).then(() => {
-        if (isValidUserName) {
+            //isValidUserName = true;
             const newUser = new User(req.body);
             newUser.save((err, user) => {
-                if (err) return res.json({ success: false, err});
+                if (err) return res.json({ success: false, err });
                 res.status(200).json({
                     success: true,
                     message: "User created"
                 });
             });
-        } else {
-            res.json({ success: false, err: message });
         }
     })
+    // .then(() => {
+    //     if(isValidUserName){
+    //         const newUser = new User(req.body);
+    //         newUser.save((err, user) => {
+    //             if (err) return res.json({ success: false, err});
+    //             res.status(200).json({
+    //                 success: true,
+    //                 message: "User created"
+    //             });
+    //         });
+    //     } else {
+    //         res.json({ success: false, err: message });
+    //     }
+    // })
 });
 
 //LOGOUT

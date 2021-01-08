@@ -13,7 +13,7 @@ import Layout from '../Layout/index';
 class Register extends Component {
     state = {
         formError: false,
-        ErrorMessage: "",
+        ErrorMessage: "Dữ liệu không hợp lệ",
         formSuccess: false,
         RegisterWith: false, 
         formData: {
@@ -153,18 +153,20 @@ class Register extends Component {
             console.log("OK");
             this.props.dispatch(registerUser(dataToSubmit))
                 .then(response => {
+                    console.log(response)
                     if (response.payload.success) {
                         this.setState({
                             formError: false,
-                            formSuccess: true
+                            formSuccess: true,
+                            ErrorMessage: response.payload.message
                         });
                         setTimeout(() => {
-                            this.props.history.push('/register_login')
+                            this.props.history.push('/Dashboard')
                         }, 3000);
                     } else {
                         this.setState({ 
                             formError: true, 
-                            ErrorMessage: response.payload.message
+                            ErrorMessage: "Vui lòng kiểm tra lại thông tin"
                         });
                     }
                 })
@@ -183,11 +185,6 @@ class Register extends Component {
             <div className="register">
                 <div className="register_page_container">
                     <div className="row no-gutters">
-                        {/* <div className="col-xl-6 no-gutters">
-                            <div className="left">
-                              
-                            </div>
-                        </div> */}
                         <div className="col-xl-12 no-gutters">
                             <div className="right">
                                 <div className="register">
@@ -224,18 +221,6 @@ class Register extends Component {
                                                     </div>
                                                         : ''}
                                                     <button className='register__button' onClick={(event) => { this.Register(event) }}>Đăng ký</button>
-                                                    {/* <div className="register_wrapper">
-                                                        <div className="label">
-                                                            Đã có tài khoản?
-                                                        </div>
-                                                        <div className="Signin_link">
-                                                            <MyButton
-                                                                type="default"
-                                                                title="Đăng nhập"
-                                                                linkTo="/register_login"
-                                                            />
-                                                        </div>
-                                                    </div> */}
                                             </form>
                                         </div>
                                         :
@@ -283,11 +268,13 @@ class Register extends Component {
                                                     change={(element) => this.updateForm(element)}
                                                 />
                                             </div>
-                                            {this.state.formError ?
-                                            <div className="errorLabel">
-                                                PLease check yoour data!
-                                            </div>
-                                            : ''}
+                                            {
+                                                this.state.formError ?
+                                                    <div className="errorLabel">
+                                                            {this.state.ErrorMessage}
+                                                    </div>
+                                                    : ''
+                                            }
                                             <button className='register__button' onClick={(event) => { this.submitForm(event) }}>Thêm mới</button>
                                           
                                         </form>

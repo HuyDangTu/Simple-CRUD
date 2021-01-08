@@ -13,7 +13,18 @@ const { auth } = require('../middleware/auth');
 
 //UPDATE
 router.put('/api/users/update/:id', auth, jsonParser, (req, res) => {
-    User.findByIdAndUpdate(req.params.id,
+    // let message = "", isValidUserName = false;
+    // User.findOne({ userName: req.body.userName }, (err, user) => {
+    //     console.log(user)
+    //     if (user) {
+    //         message += "Username đã được sử dụng!";
+    //         isValidUserName = false;
+    //     } else {
+    //         isValidUserName = true;
+    //     }
+    // }).then(()=>{
+    //     if (isValidUserName){
+        User.findByIdAndUpdate(req.params.id,
         {
             $set: {
                 userName: req.body.userName,
@@ -23,13 +34,17 @@ router.put('/api/users/update/:id', auth, jsonParser, (req, res) => {
             }
         }, {
         new: false
-    }, function (err, doc) {
-        if (err) {
-            res.send(err)
-        }
-    }).then(result =>
-        res.json(result)
-    )
+        }, function (err, doc) {
+            if (err) {
+                res.send(err)
+            }
+        }).then(result =>
+            res.json(result)
+        )
+    //     }else{
+    //         res.json({success: false,mess: "username đã được sử dụng"})
+    //     }
+    // })
 })
 
 
@@ -71,7 +86,6 @@ router.get('/api/users', auth, (req, res) => {
         }
     },
     { "$sort": { createdAt: -1 } },
-    { "$skip": skip },
     ], function (err, accounts) {
             
         if (err) return res.status(400).send(err);
